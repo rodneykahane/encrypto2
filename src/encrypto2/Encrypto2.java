@@ -1,7 +1,8 @@
-//test5
 package encrypto2;
 
+import static java.lang.Integer.toBinaryString;
 import java.util.Scanner; // Reading from System.in
+import java.util.*;
 
 public class Encrypto2 {
 
@@ -50,12 +51,37 @@ public class Encrypto2 {
         Key = encryptKey.next().charAt(0);
         
         
-        for(int i = 0; i < Msg.length(); i++) {
+        /*
+        //using char foo = (char) bar, where bar is an int, the value of bar must be between 65&90ish (ascii values) 
+        int a=66;
+        char b= (char)a;        
+        System.out.println("b is "+b);
+        */
+        
+        /*
+        //test code
+        String a = "abcde";
+        String b = "vwxyz";
+          for (int i = 0; i < b.length(); i++) {
+            System.out.printf("xoring <%s> [%s] with <%s> [%s]\n", a.charAt(0), toBinaryString(a.charAt(0)), b.charAt(i), toBinaryString(b.charAt(i)));
+            int c = 65+(a.charAt(0) ^ b.charAt(i));
+            System.out.printf("c is %d ... result is <%s> [%s]\n", c, (char) c, toBinaryString(c));
             
-            xor = Msg.charAt(i) ^ Key;
+        }
+        */
+        
+        
+        for(int i = 0; i < Msg.length(); i++) {
+           // System.out.println("key is "+ Key);
+          //  System.out.println("Msg.charAt("+i+") is "+Msg.charAt(i));
+          
+            xor = (Msg.charAt(i) ^ Key)+65; //65 is padding to get numbers into ascii range
             temp = (char)xor;
             CTxt = CTxt + temp;
-        }
+
+            //System.out.println("xor is " + xor + " temp is " + temp + " and CTxt is "+ CTxt);
+            
+        }//end for
         
         System.out.println(CTxt);
    } //end encryptString
@@ -77,7 +103,7 @@ public class Encrypto2 {
         
         for(int i = 0; i < Msg.length(); i++) {
             
-            xor = Msg.charAt(i) ^ Key;
+            xor = (Msg.charAt(i) ^ Key); //65 is padding to get numbers into ascii range
             temp = (char)xor;
             CTxt = CTxt + temp;
         }
